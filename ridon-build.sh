@@ -54,7 +54,7 @@ if [ "$INPUT" = "y" ]; then
     mkdir -p ~/ridon/ROM/api/v1/$CM_BUILD/$BUILD_TYPE/$lastBUILD_NUMBER
 
     echo "Creating json"
-    datetime = cat out/build_date.txt
+    datetime=`cat out/build_date.txt`
     
     echo "Creating ID"
     ID32=`uuid|tr -d "-"`
@@ -64,11 +64,11 @@ if [ "$INPUT" = "y" ]; then
     {
     "response": [
         {
-        "datetime": $datetime,
-        "filename": "ridon-"$MODVERSION"-signed-"$BUILD_NUMBER".zip",
-        "id": $ID,
-        "romtype": $BUILD_TYPE,
-        "url": "http://download.ridon.id/"$CM_BUILD"/updates/ridon-"$MODVERSION"-signed-"$BUILD_NUMBER".zip",
+        "datetime": '$datetime',
+        "filename": "ridon-'$MODVERSION'-signed-'$BUILD_NUMBER'.zip",
+        "id": '$ID',
+        "romtype": '$BUILD_TYPE',
+        "url": "http://download.ridon.id/'$CM_BUILD'/updates/ridon-'$MODVERSION'-signed-'$BUILD_NUMBER'.zip",
         "version": "7.0"
         }
     ]
