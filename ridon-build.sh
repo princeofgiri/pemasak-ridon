@@ -44,6 +44,7 @@ if [ "$INPUT" = "y" ]; then
     mkdir -p ~/ridon/ROM/$devicecode/
     echo "Copying ROM to download's directory"
     cp $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/
+    cp $OUT/recovery.img ~/ridon/ROM/$devicecode/recovery-$BUILD_NUMBER.img
   else
     echo "Creating update's directore for "$devicecode
     mkdir -p ~/ridon/ROM/$devicecode/updates
