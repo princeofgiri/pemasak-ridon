@@ -25,7 +25,7 @@ export DEVICE=$devicecode
 
 source build/envsetup.sh
 echo breakfast $devicecode user
-export RELEASE_TYPE=release
+export RELEASE_TYPE=RELEASE
 export BUILD_TYPE=nightly
 breakfast $devicecode user
 echo croot
