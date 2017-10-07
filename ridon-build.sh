@@ -67,13 +67,13 @@ if [ "$INPUT" = "y" ]; then
         {
         "datetime": '$datetime',
         "filename": "ridon-'$MODVERSION'-signed-'$BUILD_NUMBER'.zip",
-        "id": '$ID',
-        "romtype": '$BUILD_TYPE',
+        "id": "'$ID'",
+        "romtype": "'$RELEASE_TYPE'",
         "url": "http://download.ridon.id/'$CM_BUILD'/updates/ridon-'$MODVERSION'-signed-'$BUILD_NUMBER'.zip",
         "version": "7.0"
         }
     ]
-    }' >> ~/ridon/ROM/api/v1/$CM_BUILD/$BUILD_TYPE/$lastBUILD_NUMBER/update.json
+    }' >> ~/ridon/ROM/api/v1/$CM_BUILD/$BUILD_TYPE/$lastBUILD_NUMBER/updates.json
 
 
 fi
