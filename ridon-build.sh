@@ -27,6 +27,7 @@ source build/envsetup.sh
 echo breakfast $devicecode user
 export RELEASE_TYPE=NIGHTLY
 export BUILD_TYPE=nightly
+export RIDON_VERSION=v7.0
 breakfast $devicecode user
 echo croot
 croot
@@ -36,20 +37,21 @@ sed -i 's/BUILD_KEYS := dev-keys/BUILD_KEYS := release-keys/' build/core/Makefil
 mka BUILD_NUMBER=$buildnumber target-files-package dist
 export MODVERSION=`grep -r ro.modversion $OUT/system/build.prop | cut -f2 -d=`
 export BUILD_NUMBER=$buildnumber
+mkdir -p ~/based-ridon-target/$devicecode
 ./sign.tcl
-./build/tools/releasetools/ota_from_target_files -k ~/.ridon-certs/otakey --block --backup=true signed-target_files-$BUILD_NUMBER.zip $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip
+./build/tools/releasetools/ota_from_target_files -k ~/.ridon-certs/otakey --block --backup=true ~/based-ridon-target/$devicecode/signed-target_files-$devicecode-$BUILD_NUMBER.zip $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip
 
 if [ "$INPUT" = "y" ]; then
     echo "Creating directory for "$devicecode
     mkdir -p ~/ridon/ROM/$devicecode/
     echo "Copying ROM to download's directory"
-    cp $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/
-    cp $OUT/recovery.img ~/ridon/ROM/$devicecode/recovery-$BUILD_NUMBER.img
+    mv $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/
+    mv $OUT/recovery.img ~/ridon/ROM/$devicecode/recovery-$RIDON_VERSION-$BUILD_NUMBER.img
   else
     echo "Creating update's directore for "$devicecode
     mkdir -p ~/ridon/ROM/$devicecode/updates
     echo "Copying ROM to update's directory"
-    cp $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/updates/
+    mv $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/updates/
 
     echo "Creating API directory for device"
     mkdir -p ~/ridon/ROM/api/v1/$CM_BUILD/$BUILD_TYPE/$lastBUILD_NUMBER
