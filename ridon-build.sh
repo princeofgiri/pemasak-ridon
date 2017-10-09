@@ -45,13 +45,13 @@ if [ "$INPUT" = "y" ]; then
     echo "Creating directory for "$devicecode
     mkdir -p ~/ridon/ROM/$devicecode/
     echo "Copying ROM to download's directory"
-    mv $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/
-    mv $OUT/recovery.img ~/ridon/ROM/$devicecode/recovery-$RIDON_VERSION-$BUILD_NUMBER.img
+    cp $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/
+    cp $OUT/recovery.img ~/ridon/ROM/$devicecode/recovery-$RIDON_VERSION-$BUILD_NUMBER.img
   else
     echo "Creating update's directore for "$devicecode
     mkdir -p ~/ridon/ROM/$devicecode/updates
     echo "Copying ROM to update's directory"
-    mv $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/updates/
+    cp $OUT/ridon-$MODVERSION-signed-$BUILD_NUMBER.zip ~/ridon/ROM/$devicecode/updates/
 
     echo "Creating API directory for device"
     mkdir -p ~/ridon/ROM/api/v1/$CM_BUILD/$BUILD_TYPE/$lastBUILD_NUMBER
